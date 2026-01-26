@@ -26,7 +26,7 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
               
               {/* Content Side */}
-              <div className="flex-[1.2] text-center lg:text-center z-10 order-2 lg:order-2 flex flex-col lg:items-center">
+              <div className="flex-[1.2] text-center z-10 order-2 lg:order-2 flex flex-col items-center">
                 <div className="inline-flex items-center gap-3 mb-8 bg-blue-600/5 text-blue-700 px-5 py-2 rounded-full text-xs lg:text-sm font-black tracking-widest uppercase border border-blue-100/50 shadow-sm">
                    <Sparkles size={16} className="text-blue-600 animate-pulse" />
                    المنصة الأولى للتعليم الطبي في مصر
