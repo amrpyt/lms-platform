@@ -141,22 +141,22 @@ export default function Home() {
         </section>
 
         {/* Featured Courses Section */}
-        <section id="courses" className="py-28 lg:py-40 bg-slate-50 overflow-hidden">
+        <section id="courses" className="py-16 lg:py-40 bg-slate-50 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-20 lg:mb-28">
+            <div className="text-center mb-12 lg:mb-28">
               <Badge className="mb-4 bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-widest">محتوى حصري</Badge>
-              <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-8 tracking-tight">الكورسات المميزة</h2>
-              <div className="w-24 h-2 bg-blue-600 rounded-full mx-auto mb-8"></div>
-              <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
-                وحدات تعليمية مصممة بعناية فائقة لتوفير فهم عميق ومعرفة عملية حقيقية في مختلف التخصصات الطبية الحيوية.
+              <h2 className="text-3xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">الكورسات المميزة</h2>
+              <div className="w-16 lg:w-24 h-1.5 lg:h-2 bg-blue-600 rounded-full mx-auto mb-6 lg:mb-8"></div>
+              <p className="text-lg lg:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
+                وحدات تعليمية مصممة بعناية فائقة لتوفير فهم عميق ومعرفة عملية حقيقية.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-14">
               {featuredCourses.map((course) => (
                 <Link href={`/courses/${course.slug}`} key={course.id} className="h-full">
-                  <Card className="overflow-hidden border border-slate-100 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.15)] hover:-translate-y-4 transition-all duration-500 bg-white flex flex-col rounded-[3rem] h-full cursor-pointer group">
-                    <div className="h-64 lg:h-72 bg-slate-100 relative overflow-hidden">
+                  <Card className="overflow-hidden border border-slate-100 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.15)] hover:-translate-y-4 transition-all duration-500 bg-white flex flex-col rounded-[2.5rem] lg:rounded-[3rem] h-full cursor-pointer group">
+                    <div className="h-56 lg:h-72 bg-slate-100 relative overflow-hidden">
                       <Image
                         src={course.thumbnail}
                         alt={course.title}
@@ -164,37 +164,37 @@ export default function Home() {
                         className="object-cover group-hover:scale-110 transition-transform duration-1000"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <Badge className="absolute top-6 right-6 bg-white/95 text-blue-700 hover:bg-white border-none px-5 py-2 font-black shadow-lg rounded-2xl">
+                      <Badge className="absolute top-4 lg:top-6 right-4 lg:right-6 bg-white/95 text-blue-700 hover:bg-white border-none px-4 lg:px-5 py-1.5 lg:py-2 font-black shadow-lg rounded-xl lg:rounded-2xl text-xs lg:text-sm">
                         {course.category}
                       </Badge>
-                      <div className="absolute bottom-6 left-6 flex items-center gap-2 text-white text-sm font-black bg-black/50 backdrop-blur-md px-5 py-2 rounded-2xl shadow-lg">
-                        <Clock size={16} />
+                      <div className="absolute bottom-4 lg:bottom-6 left-4 lg:left-6 flex items-center gap-2 text-white text-[10px] lg:text-sm font-black bg-black/50 backdrop-blur-md px-4 lg:px-5 py-1.5 lg:py-2 rounded-xl lg:rounded-2xl shadow-lg">
+                        <Clock size={14} className="lg:w-4 lg:h-4" />
                         {course.duration}
                       </div>
                     </div>
-                    <CardHeader className="pt-10 px-10">
-                      <div className="flex justify-between items-center mb-6">
+                    <CardHeader className="pt-8 lg:pt-10 px-8 lg:px-10 pb-4 lg:pb-6">
+                      <div className="flex justify-between items-center mb-4 lg:mb-6">
                         <div className="flex items-center gap-1.5 text-amber-500 font-black">
-                          <Star size={20} fill="currentColor" />
-                          <span className="text-lg text-slate-700">{course.rating}</span>
+                          <Star size={18} fill="currentColor" />
+                          <span className="text-base lg:text-lg text-slate-700">{course.rating}</span>
                         </div>
-                        <span className="text-3xl font-black text-blue-700">${course.price}</span>
+                        <span className="text-2xl lg:text-3xl font-black text-blue-700">${course.price}</span>
                       </div>
-                      <CardTitle className="text-2xl lg:text-3xl text-slate-900 mb-4 font-black leading-tight group-hover:text-blue-700 transition-colors line-clamp-2 tracking-tight">{course.title}</CardTitle>
-                      <CardDescription className="text-lg text-slate-500 leading-relaxed line-clamp-2 font-medium">
+                      <CardTitle className="text-xl lg:text-3xl text-slate-900 mb-3 lg:mb-4 font-black leading-tight group-hover:text-blue-700 transition-colors line-clamp-2 tracking-tight">{course.title}</CardTitle>
+                      <CardDescription className="text-base lg:text-lg text-slate-500 leading-relaxed line-clamp-2 font-medium">
                         {course.description}
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="flex-grow pt-4 px-10">
-                      <div className="flex items-center text-sm text-slate-400 font-black gap-5 border-t border-slate-50 pt-8">
+                    <CardContent className="flex-grow pt-2 px-8 lg:px-10">
+                      <div className="flex items-center text-xs lg:text-sm text-slate-400 font-black gap-5 border-t border-slate-50 pt-6 lg:pt-8">
                         <div className="flex items-center gap-2 uppercase tracking-widest">
-                          <Users size={18} className="text-blue-700/60" />
+                          <Users size={16} className="text-blue-700/60" />
                           <span>{course.students.toLocaleString("ar-EG")} طالب</span>
                         </div>
                       </div>
                     </CardContent>
-                    <CardFooter className="pb-10 pt-6 px-10">
-                      <Button className="w-full bg-slate-900 hover:bg-blue-700 text-white h-16 lg:h-18 text-xl font-black rounded-[1.5rem] transition-all shadow-xl active:scale-95">
+                    <CardFooter className="pb-8 lg:pb-10 pt-4 lg:pt-6 px-8 lg:px-10">
+                      <Button className="w-full bg-slate-900 hover:bg-blue-700 text-white h-14 lg:h-18 text-lg lg:text-xl font-black rounded-2xl lg:rounded-[1.5rem] transition-all shadow-xl active:scale-95">
                         ابدأ الآن
                       </Button>
                     </CardFooter>
@@ -203,10 +203,10 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="text-center mt-24">
+            <div className="text-center mt-16 lg:mt-24">
               <Link href="/courses">
-                <Button variant="link" className="text-blue-700 font-black text-2xl hover:no-underline hover:text-blue-800 transition-all flex items-center mx-auto group gap-4">
-                  مشاهدة جميع الكورسات <span className="group-hover:translate-x-[-12px] transition-transform duration-300 bg-blue-50 w-12 h-12 flex items-center justify-center rounded-full">←</span>
+                <Button variant="link" className="text-blue-700 font-black text-xl lg:text-2xl hover:no-underline hover:text-blue-800 transition-all flex items-center mx-auto group gap-4">
+                  مشاهدة جميع الكورسات <span className="group-hover:translate-x-[-8px] lg:group-hover:translate-x-[-12px] transition-transform duration-300 bg-blue-50 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-full text-lg lg:text-xl">←</span>
                 </Button>
               </Link>
             </div>
