@@ -44,18 +44,18 @@ export default function Home() {
                   حوّل طريقة فهمك للطب. انضم لآلاف الطلاب في رحلة تعليمية مبتكرة تجمع بين العمق العلمي والتبسيط البصري الفائق.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start lg:flex-row-reverse mb-16">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end mt-10 mb-12">
                   <Link href="/courses" className="w-full sm:w-auto">
-                    <Button size="lg" className="bg-blue-700 hover:bg-blue-800 text-white px-12 h-16 lg:h-20 text-xl lg:text-2xl font-black rounded-3xl transition-all shadow-[0_20px_40px_-10px_rgba(30,58,138,0.4)] w-full active:scale-95">
+                    <Button size="lg" className="bg-blue-700 hover:bg-blue-800 text-white px-10 h-14 lg:h-16 text-lg lg:text-xl font-bold rounded-full transition-all shadow-[0_15px_30px_-8px_rgba(30,58,138,0.35)] w-full active:scale-[0.98] hover:shadow-[0_20px_40px_-8px_rgba(30,58,138,0.45)]">
                       استكشف الكورسات
                     </Button>
                   </Link>
-                  <Button size="lg" variant="outline" className="border-2 border-slate-200 text-slate-700 hover:bg-slate-50 px-10 h-16 lg:h-20 text-xl lg:text-2xl font-black rounded-3xl transition-all w-full sm:w-auto active:scale-95 bg-white">
-                    شاهد العرض <PlayCircle className="mr-3 w-6 h-6 lg:w-8 lg:h-8" />
+                  <Button size="lg" variant="outline" className="border-2 border-slate-200 text-slate-600 hover:bg-slate-50 px-8 h-14 lg:h-16 text-lg lg:text-xl font-bold rounded-full transition-all w-full sm:w-auto active:scale-[0.98] bg-white hover:border-slate-300">
+                    <PlayCircle className="ml-2 w-5 h-5 lg:w-6 lg:h-6" /> شاهد العرض
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-8 opacity-60">
+                <div className="flex flex-wrap justify-center lg:justify-end gap-6 lg:gap-8 opacity-60">
                    <div className="flex items-center gap-3 font-black text-slate-500 text-xs tracking-widest uppercase">
                       <div className="w-2 h-2 bg-blue-600 rounded-full"></div> معتمد دولياً
                    </div>
