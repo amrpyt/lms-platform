@@ -7,8 +7,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, GraduationCap, Users, Award, PlayCircle, Star, Clock, Sparkles, BookOpen, ArrowLeft } from "lucide-react";
 import { courses, doctorData } from "@/lib/data";
+import CourseCarousel from "@/components/CourseCarousel";
 
 export default function Home() {
+
   const featuredCourses = courses.slice(0, 3);
 
   return (
@@ -152,57 +154,8 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-14">
-              {featuredCourses.map((course) => (
-                <Link href={`/courses/${course.slug}`} key={course.id} className="h-full">
-                  <Card className="overflow-hidden border border-slate-100 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.15)] hover:-translate-y-4 transition-all duration-500 bg-white flex flex-col rounded-[2.5rem] lg:rounded-[3rem] h-full cursor-pointer group">
-                    <div className="h-56 lg:h-72 bg-slate-100 relative overflow-hidden">
-                      <Image
-                        src={course.thumbnail}
-                        alt={course.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <Badge className="absolute top-4 lg:top-6 right-4 lg:right-6 bg-white/95 text-blue-700 hover:bg-white border-none px-4 lg:px-5 py-1.5 lg:py-2 font-black shadow-lg rounded-xl lg:rounded-2xl text-xs lg:text-sm">
-                        {course.category}
-                      </Badge>
-                      <div className="absolute bottom-4 lg:bottom-6 left-4 lg:left-6 flex items-center gap-2 text-white text-[10px] lg:text-sm font-black bg-black/50 backdrop-blur-md px-4 lg:px-5 py-1.5 lg:py-2 rounded-xl lg:rounded-2xl shadow-lg">
-                        <Clock size={14} className="lg:w-4 lg:h-4" />
-                        {course.duration}
-                      </div>
-                    </div>
-                    <CardHeader className="pt-8 lg:pt-10 px-8 lg:px-10 pb-4 lg:pb-6">
-                      <div className="flex justify-between items-center mb-4 lg:mb-6">
-                        <div className="flex items-center gap-1.5 text-amber-500 font-black">
-                          <Star size={18} fill="currentColor" />
-                          <span className="text-base lg:text-lg text-slate-700">{course.rating}</span>
-                        </div>
-                        <span className="text-2xl lg:text-3xl font-black text-blue-700">${course.price}</span>
-                      </div>
-                      <CardTitle className="text-xl lg:text-3xl text-slate-900 mb-3 lg:mb-4 font-black leading-tight group-hover:text-blue-700 transition-colors line-clamp-2 tracking-tight">{course.title}</CardTitle>
-                      <CardDescription className="text-base lg:text-lg text-slate-500 leading-relaxed line-clamp-2 font-medium">
-                        {course.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow pt-2 px-8 lg:px-10">
-                      <div className="flex items-center text-xs lg:text-sm text-slate-400 font-black gap-5 border-t border-slate-50 pt-6 lg:pt-8">
-                        <div className="flex items-center gap-2 uppercase tracking-widest">
-                          <Users size={16} className="text-blue-700/60" />
-                          <span>{course.students.toLocaleString("ar-EG")} طالب</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter className="pb-8 lg:pb-10 pt-4 lg:pt-6 px-8 lg:px-10">
-                      <Button className="w-full bg-slate-900 hover:bg-blue-700 text-white h-14 lg:h-18 text-lg lg:text-xl font-black rounded-2xl lg:rounded-[1.5rem] transition-all shadow-xl active:scale-95">
-                        ابدأ الآن
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-
+            <CourseCarousel courses={featuredCourses} />
+            
             <div className="text-center mt-16 lg:mt-24">
               <Link href="/courses">
                 <Button variant="link" className="text-blue-700 font-black text-xl lg:text-2xl hover:no-underline hover:text-blue-800 transition-all flex items-center mx-auto group gap-4">
