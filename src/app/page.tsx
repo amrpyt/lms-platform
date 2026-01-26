@@ -26,7 +26,7 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
               
               {/* Content Side */}
-              <div className="flex-[1.2] text-center lg:text-right z-10 order-2 lg:order-1">
+              <div className="flex-[1.2] text-center lg:text-right z-10 order-2 lg:order-1 flex flex-col lg:items-end">
                 <div className="inline-flex items-center gap-3 mb-8 bg-blue-600/5 text-blue-700 px-5 py-2 rounded-full text-xs lg:text-sm font-black tracking-widest uppercase border border-blue-100/50 shadow-sm">
                    <Sparkles size={16} className="text-blue-600 animate-pulse" />
                    المنصة الأولى للتعليم الطبي في مصر
@@ -40,11 +40,11 @@ export default function Home() {
                   </span>
                 </h1>
                 
-                <p className="text-lg md:text-xl lg:text-2xl text-slate-600 mb-12 max-w-2xl mx-auto lg:ml-auto lg:mr-0 leading-relaxed font-medium opacity-90 lg:pl-12">
+                <p className="text-lg md:text-xl lg:text-2xl text-slate-600 mb-10 max-w-2xl leading-relaxed font-medium opacity-90">
                   حوّل طريقة فهمك للطب. انضم لآلاف الطلاب في رحلة تعليمية مبتكرة تجمع بين العمق العلمي والتبسيط البصري الفائق.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end mt-10 mb-12">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Link href="/courses" className="w-full sm:w-auto">
                     <Button size="lg" className="bg-blue-700 hover:bg-blue-800 text-white px-10 h-14 lg:h-16 text-lg lg:text-xl font-bold rounded-full transition-all shadow-[0_15px_30px_-8px_rgba(30,58,138,0.35)] w-full active:scale-[0.98] hover:shadow-[0_20px_40px_-8px_rgba(30,58,138,0.45)]">
                       استكشف الكورسات
@@ -55,7 +55,7 @@ export default function Home() {
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap justify-center lg:justify-end gap-6 lg:gap-8 opacity-60">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-6 lg:gap-8 opacity-60">
                    <div className="flex items-center gap-3 font-black text-slate-500 text-xs tracking-widest uppercase">
                       <div className="w-2 h-2 bg-blue-600 rounded-full"></div> معتمد دولياً
                    </div>
