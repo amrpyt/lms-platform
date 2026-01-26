@@ -26,7 +26,7 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
               
               {/* Content Side */}
-              <div className="flex-[1.2] text-center lg:text-right z-10 order-2 lg:order-1 flex flex-col lg:items-end">
+              <div className="flex-[1.2] text-center lg:text-center z-10 order-2 lg:order-2 flex flex-col lg:items-center">
                 <div className="inline-flex items-center gap-3 mb-8 bg-blue-600/5 text-blue-700 px-5 py-2 rounded-full text-xs lg:text-sm font-black tracking-widest uppercase border border-blue-100/50 shadow-sm">
                    <Sparkles size={16} className="text-blue-600 animate-pulse" />
                    المنصة الأولى للتعليم الطبي في مصر
@@ -40,11 +40,11 @@ export default function Home() {
                   </span>
                 </h1>
                 
-                <p className="text-lg md:text-xl lg:text-2xl text-slate-600 mb-10 max-w-2xl leading-relaxed font-medium opacity-90">
+                <p className="text-lg md:text-xl lg:text-2xl text-slate-600 mb-10 max-w-2xl leading-relaxed font-medium opacity-90 mx-auto">
                   حوّل طريقة فهمك للطب. انضم لآلاف الطلاب في رحلة تعليمية مبتكرة تجمع بين العمق العلمي والتبسيط البصري الفائق.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                   <Link href="/courses" className="w-full sm:w-auto">
                     <Button size="lg" className="bg-blue-700 hover:bg-blue-800 text-white px-10 h-14 lg:h-16 text-lg lg:text-xl font-bold rounded-full transition-all shadow-[0_15px_30px_-8px_rgba(30,58,138,0.35)] w-full active:scale-[0.98] hover:shadow-[0_20px_40px_-8px_rgba(30,58,138,0.45)]">
                       استكشف الكورسات
@@ -55,7 +55,7 @@ export default function Home() {
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-6 lg:gap-8 opacity-60">
+                <div className="flex flex-wrap justify-center gap-6 lg:gap-8 opacity-60">
                    <div className="flex items-center gap-3 font-black text-slate-500 text-xs tracking-widest uppercase">
                       <div className="w-2 h-2 bg-blue-600 rounded-full"></div> معتمد دولياً
                    </div>
@@ -69,7 +69,7 @@ export default function Home() {
               </div>
 
               {/* Image Side - Fixed aspect and controlled size */}
-              <div className="flex-1 relative w-full max-w-[320px] md:max-w-xl lg:max-w-none order-1 lg:order-2 flex justify-center">
+              <div className="flex-1 relative w-full max-w-[320px] md:max-w-xl lg:max-w-none order-1 lg:order-1 flex justify-center">
                 <div className="relative w-full aspect-square max-w-[500px] lg:max-w-[550px] rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-[0_30px_70px_-15px_rgba(30,58,138,0.25)] border-[10px] lg:border-[16px] border-white ring-1 ring-slate-100 group">
                   <Image
                     src="/Gemini_Generated_Image_g7lm4og7lm4og7lm.png"
