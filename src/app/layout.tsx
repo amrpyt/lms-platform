@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_Arabic } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
+import { I18nProvider } from "@/lib/i18n";
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
@@ -9,9 +9,15 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ibm-arabic",
 });
 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
+});
+
 export const metadata: Metadata = {
-  title: "د. زياد مهنا | منصة الكورسات الطبية",
-  description: "المنصة التعليمية الرائدة للدكتور زياد مهنا لتبسيط العلوم الطبية ومساعدة الطلاب على التفوق.",
+  title: "Dr. Zeyad Mohanna | Medical Education Platform",
+  description: "The leading educational platform by Dr. Zeyad Mohanna for simplifying medical sciences and helping students excel.",
 };
 
 export default function RootLayout({
@@ -20,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
@@ -28,11 +34,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${ibmPlexArabic.variable} font-sans antialiased overflow-x-hidden`}
+        className={`${ibmPlexArabic.variable} ${inter.variable} font-sans antialiased overflow-x-hidden`}
       >
-        <SmoothScroll>
+        <I18nProvider>
           {children}
-        </SmoothScroll>
+        </I18nProvider>
       </body>
     </html>
   );

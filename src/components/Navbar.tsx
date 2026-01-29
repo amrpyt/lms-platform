@@ -6,11 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, GraduationCap, LayoutDashboard, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { t, isArabic } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,10 +29,10 @@ const Navbar = () => {
   }, [pathname]);
 
   const navLinks = [
-    { name: "الرئيسية", href: "/" },
-    { name: "الكورسات", href: "/courses" },
-    { name: "عن الدكتور", href: "/about" },
-    { name: "تواصل معنا", href: "/contact" },
+    { name: t("nav.home"), href: "/" },
+    { name: t("nav.courses"), href: "/courses" },
+    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.contact"), href: "/contact" },
   ];
 
   const isActive = (href: string) => pathname === href;
@@ -54,16 +57,23 @@ const Navbar = () => {
                   <GraduationCap size={28} />
                 </div>
                 <span className="text-xl lg:text-2xl font-black text-slate-900 tracking-tight whitespace-nowrap">
-                  د. <span className="text-blue-700">زياد مهنا</span>
+                  {isArabic ? (
+                    <>د. <span className="text-blue-700">زياد مهنا</span></>
+                  ) : (
+                    <>Dr. <span className="text-blue-700">Zeyad Mohanna</span></>
+                  )}
                 </span>
               </Link>
             </div>
             
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-1 space-x-reverse bg-slate-100/50 backdrop-blur-sm p-1.5 rounded-2xl border border-slate-200/50">
+            <div className={cn(
+              "hidden md:flex items-center bg-slate-100/50 backdrop-blur-sm p-1.5 rounded-2xl border border-slate-200/50",
+              isArabic ? "space-x-1 space-x-reverse" : "space-x-1"
+            )}>
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.href}
                   href={link.href}
                   className={cn(
                     "text-sm lg:text-base font-bold transition-all px-5 py-2 rounded-xl",
@@ -78,9 +88,13 @@ const Navbar = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex items-center gap-2 lg:gap-4 shrink-0 z-[110]">
+            <div className={cn(
+              "flex items-center shrink-0 z-[110]",
+              isArabic ? "gap-2 lg:gap-4" : "gap-2 lg:gap-4"
+            )}>
               <div className="hidden md:flex items-center gap-3">
-                <Link href="/dashboard" title="لوحة التحكم">
+                <LanguageSwitcher />
+                <Link href="/dashboard" title={t("nav.dashboard")}>
                   <Button variant="ghost" size="icon" className="text-slate-600 hover:text-blue-700 hover:bg-white/80 rounded-2xl h-11 w-11 transition-all border border-transparent hover:border-slate-100 shadow-sm hover:shadow-md">
                     <LayoutDashboard size={22} />
                   </Button>
@@ -89,12 +103,13 @@ const Navbar = () => {
 
               <Link href="/courses" className="hidden sm:block">
                 <Button className="bg-blue-700 hover:bg-blue-800 text-white px-6 h-11 lg:h-12 text-sm lg:text-base font-black rounded-2xl transition-all shadow-lg active:scale-95">
-                  ابدأ التعلم
+                  {t("nav.startLearning")}
                 </Button>
               </Link>
 
               {/* Mobile Actions */}
               <div className="md:hidden flex items-center gap-2">
+                <LanguageSwitcher />
                 <Link href="/dashboard">
                   <Button variant="ghost" size="icon" className="text-slate-600 rounded-full h-11 w-11 bg-slate-100">
                     <User size={22} />
@@ -124,7 +139,7 @@ const Navbar = () => {
         <div className="flex flex-col h-full pt-28 px-6 pb-10 space-y-4">
           {navLinks.map((link, i) => (
             <Link
-              key={link.name}
+              key={link.href}
               href={link.href}
               className={cn(
                 "flex items-center justify-between px-6 py-5 rounded-3xl font-black text-2xl transition-all border border-transparent",
@@ -142,12 +157,12 @@ const Navbar = () => {
           <div className="mt-auto space-y-4">
              <Link href="/courses" className="block">
                 <Button className="w-full h-18 text-xl font-black rounded-3xl bg-blue-700 hover:bg-blue-800 text-white shadow-xl shadow-blue-200/50">
-                  ابدأ التعلم الآن
+                  {t("nav.startLearningNow")}
                 </Button>
              </Link>
              <Link href="/dashboard" className="block">
                 <Button variant="outline" className="w-full h-18 text-xl font-black rounded-3xl border-slate-200 text-slate-700">
-                  لوحة التحكم
+                  {t("nav.dashboard")}
                 </Button>
              </Link>
           </div>

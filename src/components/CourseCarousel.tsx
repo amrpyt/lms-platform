@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, Star, Users, ArrowLeft, ArrowRight } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 interface Course {
   id: string;
@@ -24,6 +25,7 @@ interface Course {
 export default function CourseCarousel({ courses }: { courses: Course[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t, isArabic, locale } = useI18n();
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
@@ -35,18 +37,18 @@ export default function CourseCarousel({ courses }: { courses: Course[] }) {
   return (
     <div className="relative w-full py-4">
       {/* Desktop Navigation Arrows */}
-      <div className="hidden lg:flex absolute -top-20 left-0 gap-3">
+      <div className={`hidden lg:flex absolute -top-20 gap-3 ${isArabic ? 'left-0' : 'right-0'}`}>
         <button 
-          onClick={() => scrollRef.current?.scrollBy({ left: 400, behavior: 'smooth' })}
+          onClick={() => scrollRef.current?.scrollBy({ left: isArabic ? 400 : -400, behavior: 'smooth' })}
           className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300"
         >
-          <ArrowRight size={20} />
+          {isArabic ? <ArrowRight size={20} /> : <ArrowLeft size={20} />}
         </button>
         <button 
-          onClick={() => scrollRef.current?.scrollBy({ left: -400, behavior: 'smooth' })}
+          onClick={() => scrollRef.current?.scrollBy({ left: isArabic ? -400 : 400, behavior: 'smooth' })}
           className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300"
         >
-          <ArrowLeft size={20} />
+          {isArabic ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
         </button>
       </div>
 
@@ -78,18 +80,18 @@ export default function CourseCarousel({ courses }: { courses: Course[] }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60"></div>
                   
                   {/* Category Badge */}
-                  <Badge className="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white border-white/20 px-4 py-1.5 rounded-xl font-bold text-[10px] uppercase tracking-wider">
+                  <Badge className={`absolute top-4 ${isArabic ? 'right-4' : 'left-4'} bg-white/20 backdrop-blur-md text-white border-white/20 px-4 py-1.5 rounded-xl font-bold text-[10px] uppercase tracking-wider`}>
                     {course.category}
                   </Badge>
 
                   {/* Rating Float */}
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
+                  <div className={`absolute top-4 ${isArabic ? 'left-4' : 'right-4'} bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm`}>
                     <Star size={14} className="text-amber-500 fill-amber-500" />
                     <span className="text-xs font-black text-slate-800">{course.rating}</span>
                   </div>
 
                   {/* Duration Overlay */}
-                  <div className="absolute bottom-4 right-4 flex items-center gap-2 text-white/90 text-xs font-bold">
+                  <div className={`absolute bottom-4 ${isArabic ? 'right-4' : 'left-4'} flex items-center gap-2 text-white/90 text-xs font-bold`}>
                     <Clock size={14} className="text-blue-400" />
                     <span>{course.duration}</span>
                   </div>
@@ -100,7 +102,7 @@ export default function CourseCarousel({ courses }: { courses: Course[] }) {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2 text-slate-400 font-bold text-[10px] uppercase tracking-[0.1em]">
                       <Users size={14} className="text-blue-600/50" />
-                      <span>{course.students.toLocaleString("ar-EG")} طالب</span>
+                      <span>{course.students.toLocaleString(locale === "ar" ? "ar-EG" : "en-US")} {t("courses.students")}</span>
                     </div>
                     <span className="text-2xl font-black text-blue-700">${course.price}</span>
                   </div>
@@ -114,7 +116,7 @@ export default function CourseCarousel({ courses }: { courses: Course[] }) {
                   </p>
 
                   <Button className="w-full bg-slate-900 group-hover/card:bg-blue-700 text-white h-14 rounded-2xl text-lg font-black transition-all duration-300 shadow-lg shadow-slate-200 group-hover/card:shadow-blue-200">
-                    ابدأ التعلم الآن
+                    {t("nav.startLearningNow")}
                   </Button>
                 </div>
               </div>
