@@ -84,31 +84,33 @@ export default function Home() {
                     className="object-cover scale-105 group-hover:scale-110 transition-transform duration-1000"
                     priority
                   />
-                  
-                   <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md py-3 px-6 rounded-2xl shadow-xl flex items-center gap-3 border border-white hidden md:flex">
-                    <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-                    <p className="text-[10px] font-black text-slate-700 uppercase tracking-wider">{t("hero.availableNow")}</p>
-                  </div>
                 </div>
                 
-                {/* Floating Stats */}
-                <div className={`absolute -bottom-6 ${isArabic ? '-right-4 lg:-right-8' : '-left-4 lg:-left-8'} bg-white p-6 lg:p-8 rounded-[2.5rem] lg:rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-blue-50 z-20`}>
-                  <div className="flex items-center gap-4 lg:gap-6">
-                    <div className="bg-blue-600 p-3 lg:p-4 rounded-2xl text-white shadow-lg shadow-blue-200">
-                      <GraduationCap size={28} className="lg:w-8 lg:h-8" />
-                    </div>
-                    <div>
-                      <p className="text-3xl lg:text-5xl font-black text-slate-900 leading-none">5,000+</p>
-                      <p className="text-[10px] lg:text-xs text-slate-500 font-black mt-2 uppercase tracking-widest">{t("hero.excellentStudent")}</p>
-                    </div>
-                  </div>
+                {/* Floating Badge - Available for Registration (Top Left of image) */}
+                <div className={`absolute top-4 lg:top-8 ${isArabic ? 'right-0 lg:-right-4' : 'left-0 lg:-left-4'} glass-floating py-3 px-5 lg:py-4 lg:px-6 rounded-2xl flex items-center gap-3 z-20 hidden md:flex float-animation`}>
+                  <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_12px_rgba(16,185,129,0.6)]"></div>
+                  <p className="text-[10px] lg:text-xs font-black text-slate-700 uppercase tracking-wider">{t("hero.availableNow")}</p>
                 </div>
 
-                <div className={`absolute -top-6 ${isArabic ? '-left-4 lg:-left-12' : '-right-4 lg:-right-12'} bg-white p-4 lg:p-6 rounded-[2rem] shadow-2xl border border-white z-20 hidden md:block`}>
-                  <div className="bg-amber-100 text-amber-600 p-2 rounded-xl inline-block mb-1">
-                    <Award size={24} />
+                {/* Floating Badge - Certified Expert (Top Right outside image) */}
+                <div className={`absolute top-20 lg:top-28 ${isArabic ? '-left-4 lg:-left-20' : '-right-4 lg:-right-20'} glass-floating p-4 lg:p-5 rounded-2xl lg:rounded-3xl z-20 hidden md:block float-animation-delayed`}>
+                  <div className="bg-gradient-to-br from-amber-100 to-amber-50 text-amber-600 p-2.5 lg:p-3 rounded-xl inline-flex items-center justify-center mb-2 shadow-sm">
+                    <Award size={22} className="lg:w-6 lg:h-6" />
                   </div>
                   <p className="text-xs lg:text-sm font-black text-slate-800">{t("hero.certifiedExpert")}</p>
+                </div>
+                
+                {/* Floating Stats - Students Count (Bottom Left outside image) */}
+                <div className={`absolute -bottom-4 lg:-bottom-10 ${isArabic ? '-right-2 lg:-right-16' : '-left-2 lg:-left-16'} glass-floating p-5 lg:p-6 rounded-2xl lg:rounded-3xl z-20 float-animation-slow`}>
+                  <div className="flex items-center gap-4 lg:gap-5">
+                    <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-3 lg:p-4 rounded-xl lg:rounded-2xl text-white shadow-lg shadow-blue-200/50">
+                      <GraduationCap size={24} className="lg:w-7 lg:h-7" />
+                    </div>
+                    <div>
+                      <p className="text-2xl lg:text-4xl font-black text-slate-900 leading-none">5,000+</p>
+                      <p className="text-[9px] lg:text-[11px] text-slate-500 font-bold mt-1.5 uppercase tracking-widest">{t("hero.excellentStudent")}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
