@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X, GraduationCap, LayoutDashboard, User } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -14,6 +14,35 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const { t, isArabic } = useI18n();
+  
+  // Sliding indicator state
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const navLinks = [
+    { name: t("nav.home"), href: "/" },
+    { name: t("nav.courses"), href: "/courses" },
+    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.contact"), href: "/contact" },
+  ];
+
+  // Update indicator position
+  const updateIndicator = useCallback(() => {
+    const activeIndex = navLinks.findIndex(link => link.href === pathname);
+    if (activeIndex !== -1 && linkRefs.current[activeIndex] && navContainerRef.current) {
+      const activeLink = linkRefs.current[activeIndex];
+      const container = navContainerRef.current;
+      if (activeLink) {
+        const containerRect = container.getBoundingClientRect();
+        const linkRect = activeLink.getBoundingClientRect();
+        setIndicatorStyle({
+          left: linkRect.left - containerRect.left,
+          width: linkRect.width,
+        });
+      }
+    }
+  }, [pathname, navLinks]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,12 +57,18 @@ const Navbar = () => {
     setIsOpen(false);
   }, [pathname]);
 
-  const navLinks = [
-    { name: t("nav.home"), href: "/" },
-    { name: t("nav.courses"), href: "/courses" },
-    { name: t("nav.about"), href: "/about" },
-    { name: t("nav.contact"), href: "/contact" },
-  ];
+  // Update indicator on mount and path change
+  useEffect(() => {
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(updateIndicator, 50);
+    return () => clearTimeout(timer);
+  }, [pathname, updateIndicator]);
+
+  // Update indicator on window resize
+  useEffect(() => {
+    window.addEventListener('resize', updateIndicator);
+    return () => window.removeEventListener('resize', updateIndicator);
+  }, [updateIndicator]);
 
   const isActive = (href: string) => pathname === href;
 
@@ -66,20 +101,33 @@ const Navbar = () => {
               </Link>
             </div>
             
-            {/* Desktop Menu */}
-            <div className={cn(
-              "hidden md:flex items-center bg-slate-100/50 backdrop-blur-sm p-1.5 rounded-2xl border border-slate-200/50",
-              isArabic ? "space-x-1 space-x-reverse" : "space-x-1"
-            )}>
-              {navLinks.map((link) => (
+            {/* Desktop Menu with Sliding Indicator */}
+            <div 
+              ref={navContainerRef}
+              className={cn(
+                "hidden md:flex items-center bg-slate-100/50 backdrop-blur-sm p-1.5 rounded-2xl border border-slate-200/50 relative",
+                isArabic ? "space-x-1 space-x-reverse" : "space-x-1"
+              )}
+            >
+              {/* Sliding Indicator */}
+              <div
+                className="absolute top-1.5 bottom-1.5 bg-white rounded-xl shadow-sm transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] pointer-events-none z-0"
+                style={{
+                  left: `${indicatorStyle.left}px`,
+                  width: `${indicatorStyle.width}px`,
+                  opacity: indicatorStyle.width > 0 ? 1 : 0,
+                }}
+              />
+              {navLinks.map((link, index) => (
                 <Link
                   key={link.href}
                   href={link.href}
+                  ref={(el) => { linkRefs.current[index] = el; }}
                   className={cn(
-                    "text-sm lg:text-base font-bold transition-all px-5 py-2 rounded-xl",
+                    "text-sm lg:text-base font-bold transition-colors duration-200 px-5 py-2 rounded-xl relative z-10",
                     isActive(link.href) 
-                      ? "bg-white text-blue-700 shadow-sm" 
-                      : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+                      ? "text-blue-700" 
+                      : "text-slate-600 hover:text-slate-900"
                   )}
                 >
                   {link.name}
